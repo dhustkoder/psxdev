@@ -20,9 +20,9 @@ Disc CDROMXA_PSX ;the disk format
 			
 			PrimaryVolume ;start point of primary volume
 				SystemIdentifier "PLAYSTATION" ;required indetifier (do not change)
-				VolumeIdentifier "HIWORLD" ;app specific identifiers (changeable)
-				VolumeSetIdentifier "HIWORLD"
-				PublisherIdentifier "SCEE"
+				VolumeIdentifier "PSXTEST" ;app specific identifiers (changeable)
+				VolumeSetIdentifier "PSXTEST"
+				PublisherIdentifier "DeVine"
 				DataPreparerIdentifier "SONY"
 				ApplicationIdentifier "PLAYSTATION"
 				LPath ;path tables as specified for PlayStation
@@ -38,12 +38,12 @@ Disc CDROMXA_PSX ;the disk format
 
 					File SYSTEM.CNF
 						XAFileAttributes Form1 Data ;set the attribute to form 1
-						Source c:\psyq\projects\hiworld\cdrom\SYSTEM.CNF ;where the file above can be found
+						Source c:\psyq\projects\PSXTEST\cdrom\SYSTEM.CNF ;where the file above can be found
 					EndFile
 
 					File MAIN.EXE
 						XAFileAttributes Form1 Data
-						Source c:\psyq\projects\hiworld\MAIN.EXE
+						Source c:\psyq\projects\PSXTEST\MAIN.EXE
 					EndFile
 
 				EndHierarchy ;ends the root directory definition
