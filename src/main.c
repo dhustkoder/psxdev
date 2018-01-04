@@ -17,7 +17,7 @@ static GsOT_TAG myOT_TAG[2][1<<OT_LENGTH]; // ordering table unit
 static PACKET GPUPacketArea[2][PACKETMAX]; // GPU packet data
 static short CurrentBuffer = 0; // holds the current buffer number
 
-static void graphics()
+static void graphics(void)
 {
 	SetVideoMode(MODE_PAL);
 	
@@ -36,7 +36,7 @@ static void graphics()
 }
 
 
-static void display()
+static void display(void)
 {
 	// refresh the font
 	FntFlush(-1);
@@ -67,17 +67,17 @@ static void display()
 }
 
 
-int main() 
+int main(void)
 {
 	graphics(); // setup the graphics (seen below)
 	FntLoad(960, 256); // load the font from the BIOS into the framebuffer
 	SetDumpFnt(FntOpen(5, 20, 320, 240, 0, 512)); // screen X,Y | max text length X,Y | autmatic background clear 0,1 | max characters
 
 	while (1) {
-		FntPrint("\tHello Playstation 1\n\n\n\trafaelmoura.dev@gmail.com\n");
+		FntPrint("\tHello Playstation 1\n\n\n"
+		         "\trafaelmoura.dev@gmail.com\n\n\n"
+		         "\thttps://github.com/dhustkoder/psxprogramming\n");
 		display();
 	}
-
-	return 0; // this will never be reached because we're in a while loop above
 }
 
