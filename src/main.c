@@ -23,7 +23,7 @@ static void graphics(void)
 {
 	SetVideoMode(MODE_PAL);
 
-	 // set the graphics mode resolutions (GsNONINTER for NTSC, and GsINTER for PAL)
+	// set the graphics mode resolutions (GsNONINTER for NTSC, and GsINTER for PAL)
 	GsInitGraph(SCREEN_WIDTH, SCREEN_HEIGHT, GsINTER|GsOFSGPU, 1, 0);
 
 	// tell the GPU to draw from the top left coordinates of the framebuffer
@@ -36,8 +36,8 @@ static void graphics(void)
 	myOT[1].org = myOT_TAG[1];
 	
 	// clear the ordertables
-	GsClearOt(0,0,&myOT[0]);
-	GsClearOt(0,0,&myOT[1]);
+	GsClearOt(0, 0, &myOT[0]);
+	GsClearOt(0, 0, &myOT[1]);
 }
 
 
@@ -53,7 +53,7 @@ static void display(void)
 	GsSetWorkBase((PACKET*)GPUPacketArea[CurrentBuffer]);
 	
 	// clear the ordering table
-	GsClearOt(0,0, &myOT[CurrentBuffer]);
+	GsClearOt(0, 0, &myOT[CurrentBuffer]);
 	
 	// wait for all drawing to finish
 	DrawSync(0);
@@ -65,7 +65,7 @@ static void display(void)
 	GsSwapDispBuff();
 	
 	// clear the ordering table with a background color (R,G,B)
-	GsSortClear(50,50,50, &myOT[CurrentBuffer]);
+	GsSortClear(50, 50, 50, &myOT[CurrentBuffer]);
 	
 	// draw the ordering table
 	GsDrawOt(&myOT[CurrentBuffer]);
@@ -76,12 +76,13 @@ int main()
 {
 	graphics(); // setup the graphics (seen below)
 	FntLoad(960, 256); // load the font from the BIOS into the framebuffer
-	SetDumpFnt(FntOpen(5, 20, 320, 240, 0, 512)); // screen X,Y | max text length X,Y | autmatic background clear 0,1 | max characters
-	printf("HELLO!");
+	// screen X,Y | max text length X,Y | autmatic background clear 0,1 | max characters
+	SetDumpFnt(FntOpen(5, 20, 320, 240, 0, 512)); 
+
 	while (1) {
 		FntPrint("\tHello Playstation 1\n\n\n"
 		         "\trafaelmoura.dev@gmail.com\n\n\n"
-		         "\thttps://github.com/dhustkoder/psxprogramming\n");
+		         "\thttps://github.com/dhustkoder/psprog\n");
 		display();
 	}
 }
