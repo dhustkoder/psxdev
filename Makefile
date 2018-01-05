@@ -1,3 +1,5 @@
+PROJNAME=TEST
+
 
 .PHONY all: clean main cdiso
 
@@ -6,11 +8,11 @@ main: %.cpe
 	cpe2x /ce main.cpe
 
 cdiso: %.img
-	stripiso s 2352 PSXTEST.IMG PSXTEST.ISO
-	psxlicense /eu /i PSXTEST.ISO
+	stripiso s 2352 $(PROJNAME).IMG $(PROJNAME).ISO
+	psxlicense /eu /i $(PROJNAME).ISO
 
 %.img:
-	buildcd -l -iPSXTEST.IMG PSXTEST.CTI
+	buildcd -l -i$(PROJNAME).IMG $(PROJNAME).CTI
 
 %.cpe:
 	ccpsx -Wall -Werror -O2 -G0 -Xo$$80010000 src/*.c -omain.cpe
