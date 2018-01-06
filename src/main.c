@@ -4,6 +4,7 @@
 #include <libgpu.h>
 #include <libgs.h>
 #include <libetc.h>
+#include <libpad.h>
 
 #define OT_LENGTH 1 // the ordertable length
 #define PACKETMAX 18 // the maximum number of objects on the screen
@@ -16,6 +17,7 @@ u_long _stacksize = 0x00004000; // force 16 kilobytes of stack
 static GsOT myOT[2]; // ordering table header
 static GsOT_TAG myOT_TAG[2][1<<OT_LENGTH]; // ordering table unit
 static PACKET GPUPacketArea[2][PACKETMAX]; // GPU packet data
+static u_char paddata[2][34];   // pad 1 and 2 data
 static short CurrentBuffer = 0; // holds the current buffer number
 
 
@@ -64,26 +66,32 @@ static void display(void)
 	GsSwapDispBuff();
 	
 	// clear the ordering table with a background color (R,G,B)
-	GsSortClear(50, 50, 50, &myOT[CurrentBuffer]);
+	GsSortClear(0, 0, 0, &myOT[CurrentBuffer]);
 	
 	// draw the ordering table
 	GsDrawOt(&myOT[CurrentBuffer]);
 }
 
 
-int main()
+int main(void)
 {
 	graphics(); // setup the graphics (seen below)
 	FntLoad(960, 256); // load the font from the BIOS into the framebuffer
 	// screen X,Y | max text length X,Y | autmatic background clear 0,1 | max characters
 	SetDumpFnt(FntOpen(5, 20, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 512)); 
+	PadInitDirect(&paddata[0][0], &paddata[1][0]);
 
 	for (;;) {
 		FntPrint("\tHello Playstation 1\n\n\n"
 		         "\trafaelmoura.dev@gmail.com\n\n\n"
 		         "\tgithub.com/dhustkoder/psprog\n\n\n"
-			 "\tpsxdev.net\n");
+			 "\tpsxdev.net\n\n\n"
+			 "\tPad 1 data: %X %X %X",
+		         paddata[0][1], paddata[0][2], paddata[0][3]);
+		
+		PadStartCom();
 		display();
+		PadStopCom();
 	}
 }
 

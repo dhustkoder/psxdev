@@ -15,6 +15,8 @@ PSYQ_DIR=C:\PSYQ
 # Set this to this project directory
 PROJ_DIR=C:\PSYQ\PROJECTS\PSPROG
 
+LIBS=-llibpad
+
 .PHONY all: clean main cdiso
 
 .PHONY clean:
@@ -25,7 +27,7 @@ main: %.CPE
 	cpe2x /ce MAIN.CPE
 
 %.CPE:
-	ccpsx -Wall -Werror -O2 -G0 -Xo$$80010000 src/*.c -oMAIN.CPE
+	ccpsx -Wall -Werror -O2 -G0 -Xo$$80010000 $(LIBS) src/*.c -oMAIN.CPE
 
 cdiso: %.IMG
 	stripiso s 2352 $(PROJNAME).IMG $(PROJNAME).ISO
