@@ -1,6 +1,7 @@
 PROJNAME=TEST
-PSYQ_DIR=C:/PSYQ
-PROJ_DIR=C:/PSYQ/PROJECTS/PSPROG
+PSYQ_DIR=C:\PSYQ
+PROJ_DIR=C:\PSYQ\PROJECTS\PSPROG
+DEL=del
 
 .PHONY all: clean main cdiso
 
@@ -19,60 +20,62 @@ cdiso: %.img
 	ccpsx -Wall -Werror -O2 -G0 -Xo$$80010000 src/*.c -omain.cpe
 
 %.cti: %.cnf
-	echo "Define ProjectPath "$(PROJ_DIR)"\n" >> $(PROJNAME).cti
-	echo "Define LicensePath "$(PSYQ_DIR)"/CDGEN/LCNSFILE/\n" >> $(PROJNAME).cti
-	echo "Define LicenseFile licensee.dat\n\n" >> $(PROJNAME).cti
-	echo "Disc CDROMXA_PSX ;the disk format\n\n" >> $(PROJNAME).cti
-	echo "\tCatalogNumber 0000000000000\n\n" >> $(PROJNAME).cti
-	echo "\tLeadIn XA ;lead in track (track 0)\n" >> $(PROJNAME).cti
-	echo "\t\tEmpty 300 ;defines the lead in size (min 150)\n" >> $(PROJNAME).cti
-	echo "\t\tPostGap 150 ;required gap at end of the lead in\n" >> $(PROJNAME).cti
-	echo "\tEndTrack ;end of the lead in track\n\n" >> $(PROJNAME).cti
-	echo "\tTrack XA ;start of the XA (data) track\n\n" >> $(PROJNAME).cti
-	echo "\t\tPause 150 ;required pause in first track after the lead in\n\n" >> $(PROJNAME).cti
-	echo "\t\tVolume ISO9660 ;define ISO 9660 volume\n\n" >> $(PROJNAME).cti
-	echo "\t\t\tSystemArea [LicensePath][LicenseFile]\n\n" >> $(PROJNAME).cti
-	echo "\t\t\tPrimaryVolume ;start point of primary volume\n" >> $(PROJNAME).cti
-	echo "\t\t\t\tSystemIdentifier \"PLAYSTATION\" ;required indetifier (do not change)\n" >> $(PROJNAME).cti
-	echo "\t\t\t\tVolumeIdentifier \"Test\" ;app specific identifiers (changeable)\n" >> $(PROJNAME).cti
-	echo "\t\t\t\tVolumeSetIdentifier \"Test\"\n" >> $(PROJNAME).cti
-	echo "\t\t\t\tPublisherIdentifier \"DeVine\"\n" >> $(PROJNAME).cti
-	echo "\t\t\t\tDataPreparerIdentifier \"SONY\"\n" >> $(PROJNAME).cti
-	echo "\t\t\t\tApplicationIdentifier \"PLAYSTATION\"" >> $(PROJNAME).cti
-	echo "\t\t\t\tLPath ;path tables as specified for PlayStation\n" >> $(PROJNAME).cti
-	echo "\t\t\t\tOptionalLpath\n" >> $(PROJNAME).cti
-	echo "\t\t\t\tMPath\n" >> $(PROJNAME).cti
-	echo "\t\t\t\tOptionalMpath\n\n" >> $(PROJNAME).cti
-	echo "\t\t\t\tHierarchy ;start point of root directory definition\n\n" >> $(PROJNAME).cti
-	echo "\t\t\t\t\tXAFileAttributes  Form1 Audio\n" >> $(PROJNAME).cti
-	echo "\t\t\t\t\tXAVideoAttributes ApplicationSpecific\n" >> $(PROJNAME).cti
-	echo "\t\t\t\t\tXAAudioAttributes ADPCM_C Stereo ;you can also add 'Emphasis_On' before Stereo\n\n" >> $(PROJNAME).cti
-	echo "\t\t\t\t\tFile SYSTEM.CNF\n" >> $(PROJNAME).cti
-	echo "\t\t\t\t\t\tXAFileAttributes Form1 Data ;set the attribute to form 1\n" >> $(PROJNAME).cti
-	echo "\t\t\t\t\t\tSource [ProjectPath]SYSTEM.CNF ;where the file above can be found\n" >> $(PROJNAME).cti
-	echo "\t\t\t\t\tEndFile\n\n" >> $(PROJNAME).cti
-	echo "\t\t\t\t\tFile MAIN.EXE\n" >> $(PROJNAME).cti
-	echo "\t\t\t\t\t\tXAFileAttributes Form1 Data\n" >> $(PROJNAME).cti
-	echo "\t\t\t\t\t\tSource [ProjectPath]MAIN.EXE\n" >> $(PROJNAME).cti
-	echo "\t\t\t\t\tEndFile\n\n" >> $(PROJNAME).cti
-	echo "\t\t\t\tEndHierarchy ;ends the root directory definition\n\n" >> $(PROJNAME).cti
-	echo "\t\t\tEndPrimaryVolume ;ends the primary volume definition\n\n" >> $(PROJNAME).cti
-	echo "\t\tEndVolume ;ends the ISO 9660 definition\n\n" >> $(PROJNAME).cti
-	echo "\t\tEmpty 300\n" >> $(PROJNAME).cti
-	echo "\t\tPostGap 150 ;required to change the track type\n" >> $(PROJNAME).cti
-	echo "\tEndTrack ;ends the track definition (end of the XA track)\n\n" >> $(PROJNAME).cti
-	echo "\tLeadOut XA ;note that the leadout track must be the same data type as the last track (IE: AUDIO, XA or MODE1)\n" >> $(PROJNAME).cti
-	echo "\tEmpty 150\n" >> $(PROJNAME).cti
-	echo "\tEndTrack\n\n" >> $(PROJNAME).cti
-	echo "EndDisc" >> $(PROJNAME).cti
+	$(DEL) *.cti
+	echo Define ProjectPath $(PROJ_DIR)\ >> $(PROJNAME).cti
+	echo Define LicensePath $(PSYQ_DIR)\CDGEN\LCNSFILE\ >> $(PROJNAME).cti
+	echo Define LicenseFile licensee.dat >> $(PROJNAME).cti
+	echo Disc CDROMXA_PSX ;the disk format >> $(PROJNAME).cti
+	echo 	CatalogNumber 0000000000000 >> $(PROJNAME).cti
+	echo 	LeadIn XA ;lead in track (track 0) >> $(PROJNAME).cti
+	echo 		Empty 300 ;defines the lead in size (min 150) >> $(PROJNAME).cti
+	echo 		PostGap 150 ;required gap at end of the lead in >> $(PROJNAME).cti
+	echo 	EndTrack ;end of the lead in track >> $(PROJNAME).cti
+	echo 	Track XA ;start of the XA (data) track >> $(PROJNAME).cti
+	echo 		Pause 150 ;required pause in first track after the lead in >> $(PROJNAME).cti
+	echo 		Volume ISO9660 ;define ISO 9660 volume >> $(PROJNAME).cti
+	echo 			SystemArea [LicensePath][LicenseFile] >> $(PROJNAME).cti
+	echo 			PrimaryVolume ;start point of primary volume >> $(PROJNAME).cti
+	echo 				SystemIdentifier "PLAYSTATION" ;required indetifier (do not change) >> $(PROJNAME).cti
+	echo 				VolumeIdentifier "Test" ;app specific identifiers (changeable) >> $(PROJNAME).cti
+	echo 				VolumeSetIdentifier "Test" >> $(PROJNAME).cti
+	echo 				PublisherIdentifier "DeVine" >> $(PROJNAME).cti
+	echo 				DataPreparerIdentifier "SONY" >> $(PROJNAME).cti
+	echo 				ApplicationIdentifier "PLAYSTATION" >> $(PROJNAME).cti
+	echo 				LPath ;path tables as specified for PlayStation >> $(PROJNAME).cti
+	echo 				OptionalLpath >> $(PROJNAME).cti
+	echo 				MPath >> $(PROJNAME).cti
+	echo 				OptionalMpath >> $(PROJNAME).cti
+	echo 				Hierarchy ;start point of root directory definition >> $(PROJNAME).cti
+	echo 					XAFileAttributes  Form1 Audio >> $(PROJNAME).cti
+	echo 					XAVideoAttributes ApplicationSpecific >> $(PROJNAME).cti
+	echo 					XAAudioAttributes ADPCM_C Stereo ;you can also add 'Emphasis_On' before Stereo >> $(PROJNAME).cti
+	echo 					File SYSTEM.CNF >> $(PROJNAME).cti
+	echo 						XAFileAttributes Form1 Data ;set the attribute to form 1 >> $(PROJNAME).cti
+	echo 						Source [ProjectPath]SYSTEM.CNF ;where the file above can be found >> $(PROJNAME).cti
+	echo 					EndFile >> $(PROJNAME).cti
+	echo 					File MAIN.EXE >> $(PROJNAME).cti
+	echo 						XAFileAttributes Form1 Data >> $(PROJNAME).cti
+	echo 						Source [ProjectPath]MAIN.EXE >> $(PROJNAME).cti
+	echo 					EndFile >> $(PROJNAME).cti
+	echo 				EndHierarchy ;ends the root directory definition >> $(PROJNAME).cti
+	echo 			EndPrimaryVolume ;ends the primary volume definition >> $(PROJNAME).cti
+	echo 		EndVolume ;ends the ISO 9660 definition >> $(PROJNAME).cti
+	echo 		Empty 300 >> $(PROJNAME).cti
+	echo 		PostGap 150 ;required to change the track type >> $(PROJNAME).cti
+	echo 	EndTrack ;ends the track definition (end of the XA track) >> $(PROJNAME).cti
+	echo 	LeadOut XA ;note that the leadout track must be the same data type as the last track (IE: AUDIO, XA or MODE1) >> $(PROJNAME).cti
+	echo 	Empty 150 >> $(PROJNAME).cti
+	echo 	EndTrack >> $(PROJNAME).cti
+	echo EndDisc >> $(PROJNAME).cti
 
 %.cnf:
-	echo "BOOT=cdrom:\\MAIN.EXE;1" >> system.cnf
-	echo "TCB=4" >> system.cnf
-	echo "EVENT=10" >> system.cnf
-	echo "STACK=801FFFF0" >> system.cnf
+	$(DEL) *.cnf
+	echo BOOT=cdrom:\MAIN.EXE;1 >> system.cnf
+	echo TCB=4 >> system.cnf
+	echo EVENT=10 >> system.cnf
+	echo STACK=801FFFF0 >> system.cnf
 
 .PHONY clean:
-	rm -rf *.map *.sym *.cpe *.img *.toc *.exe *.cnf *.cti
+	$(DEL) *.map *.sym *.cpe *.img *.toc *.exe *.cnf *.cti
 
 
