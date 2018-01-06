@@ -1,4 +1,4 @@
-set PSYQ_DIR=C:\psyq
+set PSYQ_DIR=C:\PSYQ
 set PATH=%PSYQ_DIR%\bin;%PSYQ_DIR%\cdemu\bin;C:\Program Files\GnuMake\bin;%PATH%
 set PSX_PATH=%PSYQ_DIR%\bin
 set LIBRARY_PATH=%PSYQ_DIR%\lib
@@ -9,4 +9,3 @@ set COMPILER_PATH=%PSYQ_DIR%\bin
 set GO32=DPMISTACK 1000000 
 set G032TMP=C:\WINDOWS\TEMP
 set TMPDIR=C:\WINDOWS\TEMP
-

@@ -1,10 +1,21 @@
+# Before using the Makefile you should download and install GnuMake and PSYQ SDK
+# (you can download the PSYQ SDK from www.psxdev.net).
+# Then set the PSYQ_DIR in setupenv.bat and in this Makefile and run the setupenv.bat
+# now you can use make to build the project
+
+# This Makefile should be run in a Windows XP (or less) System
+# This Makefile can also run in Linux using Wine cmd
+
+# Set this to the project name
 PROJNAME=TEST
+
+# Set this to the PSYQ directory
 PSYQ_DIR=C:\PSYQ
+
+# Set this to this project directory
 PROJ_DIR=C:\PSYQ\PROJECTS\PSPROG
-DEL=del
 
 .PHONY all: clean main cdiso
-
 
 main: %.cpe
 	cpe2x /ce main.cpe
@@ -20,7 +31,7 @@ cdiso: %.img
 	ccpsx -Wall -Werror -O2 -G0 -Xo$$80010000 src/*.c -omain.cpe
 
 %.cti: %.cnf
-	$(DEL) *.cti
+	del *.cti
 	echo Define ProjectPath $(PROJ_DIR)\ >> $(PROJNAME).cti
 	echo Define LicensePath $(PSYQ_DIR)\CDGEN\LCNSFILE\ >> $(PROJNAME).cti
 	echo Define LicenseFile licensee.dat >> $(PROJNAME).cti
@@ -36,9 +47,9 @@ cdiso: %.img
 	echo 			SystemArea [LicensePath][LicenseFile] >> $(PROJNAME).cti
 	echo 			PrimaryVolume ;start point of primary volume >> $(PROJNAME).cti
 	echo 				SystemIdentifier "PLAYSTATION" ;required indetifier (do not change) >> $(PROJNAME).cti
-	echo 				VolumeIdentifier "Test" ;app specific identifiers (changeable) >> $(PROJNAME).cti
-	echo 				VolumeSetIdentifier "Test" >> $(PROJNAME).cti
-	echo 				PublisherIdentifier "DeVine" >> $(PROJNAME).cti
+	echo 				VolumeIdentifier "$(PROJNAME)" ;app specific identifiers (changeable) >> $(PROJNAME).cti
+	echo 				VolumeSetIdentifier "$(PROJNAME)" >> $(PROJNAME).cti
+	echo 				PublisherIdentifier "SCEE" >> $(PROJNAME).cti
 	echo 				DataPreparerIdentifier "SONY" >> $(PROJNAME).cti
 	echo 				ApplicationIdentifier "PLAYSTATION" >> $(PROJNAME).cti
 	echo 				LPath ;path tables as specified for PlayStation >> $(PROJNAME).cti
@@ -69,13 +80,13 @@ cdiso: %.img
 	echo EndDisc >> $(PROJNAME).cti
 
 %.cnf:
-	$(DEL) *.cnf
+	del *.cnf
 	echo BOOT=cdrom:\MAIN.EXE;1 >> system.cnf
 	echo TCB=4 >> system.cnf
 	echo EVENT=10 >> system.cnf
 	echo STACK=801FFFF0 >> system.cnf
 
 .PHONY clean:
-	$(DEL) *.map *.sym *.cpe *.img *.toc *.exe *.cnf *.cti
+	del *.map *.sym *.cpe *.img *.toc *.exe *.cnf *.cti
 
 

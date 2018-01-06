@@ -78,10 +78,11 @@ int main()
 	// screen X,Y | max text length X,Y | autmatic background clear 0,1 | max characters
 	SetDumpFnt(FntOpen(5, 20, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 512)); 
 
-	while (1) {
+	for (;;) {
 		FntPrint("\tHello Playstation 1\n\n\n"
 		         "\trafaelmoura.dev@gmail.com\n\n\n"
-		         "\tgithub.com/dhustkoder/psprog\n");
+		         "\tgithub.com/dhustkoder/psprog\n\n\n"
+			 "\tpsxdev.net\n");
 		display();
 	}
 }
