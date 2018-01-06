@@ -1,5 +1,5 @@
 set PSYQ_DIR=C:\psyq
-set PATH=%PSYQ_DIR%\bin;%PSYQ_DIR%\cdemu\bin;%PATH%
+set PATH=%PSYQ_DIR%\bin;%PSYQ_DIR%\cdemu\bin;C:\Program Files\GnuMake\bin;%PATH%
 set PSX_PATH=%PSYQ_DIR%\bin
 set LIBRARY_PATH=%PSYQ_DIR%\lib
 set C_PLUS_INCLUDE_PATH=%PSYQ_DIR%\include
