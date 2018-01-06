@@ -13,7 +13,7 @@ PROJNAME=TEST
 PSYQ_DIR=C:\PSYQ
 
 # Set this to this project directory
-PROJ_DIR=C:\PSYQ\PROJECTS\PSPROG
+PROJ_DIR=C:\PSYQ\PROJECTS\$(PROJNAME)
 
 LIBS=-llibpad
 
