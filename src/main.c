@@ -40,7 +40,6 @@ static void graphics(void)
 	GsClearOt(0, 0, &myOT[1]);
 }
 
-
 static void display(void)
 {
 	// refresh the font
@@ -77,12 +76,12 @@ int main()
 	graphics(); // setup the graphics (seen below)
 	FntLoad(960, 256); // load the font from the BIOS into the framebuffer
 	// screen X,Y | max text length X,Y | autmatic background clear 0,1 | max characters
-	SetDumpFnt(FntOpen(5, 20, 320, 240, 0, 512)); 
+	SetDumpFnt(FntOpen(5, 20, SCREEN_WIDTH, SCREEN_HEIGHT, 0, 512)); 
 
 	while (1) {
 		FntPrint("\tHello Playstation 1\n\n\n"
 		         "\trafaelmoura.dev@gmail.com\n\n\n"
-		         "\thttps://github.com/dhustkoder/psprog\n");
+		         "\tgithub.com/dhustkoder/psprog\n");
 		display();
 	}
 }
