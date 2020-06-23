@@ -88,7 +88,7 @@ int main(void)
 	for (;;) {
 		FntPrint("\tHello Playstation 1\n\n\n"
 		         "\trafaelmoura.dev@gmail.com\n\n\n"
-		         "\tgithub.com/dhustkoder/psprog\n\n\n"
+		         "\tgithub.com/dhustkoder/psxdev\n\n\n"
 			 "\tpsxdev.net\n\n\n"
 			 "\tPad 1 data: %X %X %X",
 		         paddata[0][1], paddata[0][2], paddata[0][3]);
