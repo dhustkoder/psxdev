@@ -3,7 +3,7 @@
 # Then set the PSYQ_DIR in setupenv.bat and in this Makefile and run the setupenv.bat
 # now you can use make to build the project
 
-# This Makefile should run on Windows XP (or less).
+# This Makefile should run on Windows XP (or older).
 # This Makefile can also run on Linux with wine and dosbox installed.
 
 # Set this to the project name
